@@ -31,10 +31,8 @@ public class ObjectFactory {
     private final static QName _ActivitySelection_QNAME = new QName("http://ws/", "activitySelection");
     private final static QName _GetPersonById_QNAME = new QName("http://ws/", "getPersonById");
     private final static QName _MeasureRange_QNAME = new QName("http://ws/", "measureRange");
-    private final static QName _GetMotivationResponse_QNAME = new QName("http://ws/", "getMotivationResponse");
     private final static QName _SuggestActivities_QNAME = new QName("http://ws/", "suggestActivities");
     private final static QName _GetMeasureHistories_QNAME = new QName("http://ws/", "getMeasureHistories");
-    private final static QName _GetMotivation_QNAME = new QName("http://ws/", "getMotivation");
     private final static QName _HealthMeasureHistory_QNAME = new QName("http://ws/", "healthMeasureHistory");
     private final static QName _GetGoalHistoriesResponse_QNAME = new QName("http://ws/", "getGoalHistoriesResponse");
     private final static QName _Goal_QNAME = new QName("http://ws/", "goal");
@@ -140,15 +138,7 @@ public class ObjectFactory {
     public MeasureRange createMeasureRange() {
         return new MeasureRange();
     }
-
-    /**
-     * Create an instance of {@link GetMotivationResponse }
-     * 
-     */
-    public GetMotivationResponse createGetMotivationResponse() {
-        return new GetMotivationResponse();
-    }
-
+    
     /**
      * Create an instance of {@link SuggestActivities }
      * 
@@ -163,14 +153,6 @@ public class ObjectFactory {
      */
     public GetMeasureHistories createGetMeasureHistories() {
         return new GetMeasureHistories();
-    }
-
-    /**
-     * Create an instance of {@link GetMotivation }
-     * 
-     */
-    public GetMotivation createGetMotivation() {
-        return new GetMotivation();
     }
 
     /**
@@ -397,15 +379,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetMotivationResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://ws/", name = "getMotivationResponse")
-    public JAXBElement<GetMotivationResponse> createGetMotivationResponse(GetMotivationResponse value) {
-        return new JAXBElement<GetMotivationResponse>(_GetMotivationResponse_QNAME, GetMotivationResponse.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link SuggestActivities }{@code >}}
      * 
      */
@@ -421,15 +394,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://ws/", name = "getMeasureHistories")
     public JAXBElement<GetMeasureHistories> createGetMeasureHistories(GetMeasureHistories value) {
         return new JAXBElement<GetMeasureHistories>(_GetMeasureHistories_QNAME, GetMeasureHistories.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetMotivation }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://ws/", name = "getMotivation")
-    public JAXBElement<GetMotivation> createGetMotivation(GetMotivation value) {
-        return new JAXBElement<GetMotivation>(_GetMotivation_QNAME, GetMotivation.class, null, value);
     }
 
     /**

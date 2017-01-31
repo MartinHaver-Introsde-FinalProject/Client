@@ -177,20 +177,4 @@ public interface People {
     public Person createNewGoal(
         @WebParam(name = "idPerson", targetNamespace = "")
         int idPerson);
-
-    /**
-     * 
-     * @param idPerson
-     * @return
-     *     returns ws.Motivation
-     */
-    @WebMethod
-    @WebResult(name = "motivationResult", targetNamespace = "")
-    @RequestWrapper(localName = "getMotivation", targetNamespace = "http://ws/", className = "ws.GetMotivation")
-    @ResponseWrapper(localName = "getMotivationResponse", targetNamespace = "http://ws/", className = "ws.GetMotivationResponse")
-    @Action(input = "http://ws/People/getMotivationRequest", output = "http://ws/People/getMotivationResponse")
-    public Motivation getMotivation(
-        @WebParam(name = "idPerson", targetNamespace = "")
-        int idPerson);
-
 }

@@ -2,10 +2,10 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.net.*;
 import ws.Goal;
 import ws.HealthMeasure;
 import ws.HealthMeasureHistory;
-import ws.Motivation;
 import ws.Activity;
 import ws.ActivitySelection;
 import ws.People;
@@ -17,13 +17,10 @@ public class PeopleClient {
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String input = "";
-
 		PeopleService service = new PeopleService();
 		People people = service.getPeopleImplPort();
-		
 		List<Activity> searchingListOfActivities = new ArrayList<Activity>();
 		List<Activity> suggestionActivities = new ArrayList<Activity>();
-		
 		Person person = people.getPersonById(idPerson);
 
 		while (true) {
@@ -32,13 +29,11 @@ public class PeopleClient {
 			System.out.println("MENU");
 			System.out.println("1: Show person information.");
 			System.out.println("2: Update your health profile.");
-			
 			System.out.println("3: Create new goal.");
-			
+			System.out.println("4: Motivate me!");
 			System.out.println("5: Get suggestion for activities and select activity for exercie.");
 			System.out.println("7: Search for activities and select activity for exercie.");
 			System.out.println("8: Update time of the current activity.");
-			
 			System.out.println("9: Show health measure histories.");
 			System.out.println("10: Show goal histories.");
 			input = br.readLine();
@@ -47,7 +42,7 @@ public class PeopleClient {
 			} else {
 				switch (input) {
 				case "1":
-					write(person, people.getMotivation(idPerson));
+					write(person);
 					break;
 				case "2":
 					System.out.print("Height: "); input = br.readLine();
@@ -58,7 +53,20 @@ public class PeopleClient {
 					int age = Integer.parseInt(input);
 					person = people.updateHealthMeasure(idPerson, height, weight, age);
 					break;
+				case "3":
+					person = people.createNewGoal(idPerson);
+					break;
 				case "4":
+					URL oracle = new URL("https://safe-ravine-27770.herokuapp.com/api/motivation");
+			        BufferedReader in = new BufferedReader(new InputStreamReader(oracle.openStream()));
+			        String inputLine;
+			        String newLine = System.getProperty("line.separator");
+			        System.out.println("***************************************************************************************************");
+			        while ((inputLine = in.readLine()) != null)
+			        	System.out.println("Your quote:" + newLine + inputLine + newLine + "Keep up the good work!" );
+			        	in.close();
+			       System.out.println("***************************************************************************************************");
+			       break;
 				case "5":
 					suggestionActivities = people.suggestActivities(idPerson);
 					writeActivities(suggestionActivities);
@@ -106,9 +114,6 @@ public class PeopleClient {
 						}
 					}
 					break;
-				case "3":
-					person = people.createNewGoal(idPerson);
-					break;
 				case "9":
 					List<HealthMeasureHistory> healthMeasureHistories = people.getMeasureHistories(idPerson);
 					writeHealthMeasureHistories(healthMeasureHistories);
@@ -117,15 +122,11 @@ public class PeopleClient {
 					List<Goal> goals = people.getGoalHistories(idPerson);
 					writeGoals(goals);
 					break;
-				
-				}
-					
+				}			
 			}
 		}
-
 	}
-	
-	
+
 	public static void writeHealthMeasureHistories(List<HealthMeasureHistory> healthMeasureHistories) {
 		System.out.println("HEALTH HISTORIES INFORMATION:");
 		System.out.println("*************************************************");
@@ -160,7 +161,7 @@ public class PeopleClient {
 		}
 	}
 	
-	public static void write(Person person, Motivation motivation) {
+	public static void write(Person person) {
 		System.out.println("PERSONAL INFORMATION:");
 		System.out.println("*************************************************");
 		System.out.format("%1s%15s%30d%3s\n", "*", "ID: ", person.getIdPerson(), "*");
@@ -199,9 +200,6 @@ public class PeopleClient {
 				System.out.println("***************************************************************************************************");
 			}
 		}
-		System.out.println("MOTIVATION:");
-		System.out.println("\"" + motivation.getText() + "\"");
-		
 	}
 	
 	public static void writeActivities(List<Activity> activities) {
