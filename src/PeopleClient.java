@@ -24,20 +24,22 @@ public class PeopleClient {
 		Person person = people.getPersonById(idPerson);
 
 		while (true) {
-			System.out.println("This is the console. To quit this program, please type 'exit'.");	
-			System.out.println("\n\n");
-			System.out.println("MENU");
+			System.out.println("Welcome! This is the console of your personal healthy lifestyle information system.");	
+			System.out.println("Changing the lifestyle takes considerable effort, but I believe this app will help you to stay on the right path.");
+			System.out.println("Now, choose your action please:");
+			System.out.println("\n");
 			System.out.println("1: Show person information.");
 			System.out.println("2: Update your health profile.");
 			System.out.println("3: Create new goal.");
 			System.out.println("4: Motivate me!");
-			System.out.println("5: Get suggestion for activities and select activity for exercie.");
-			System.out.println("7: Search for activities and select activity for exercie.");
-			System.out.println("8: Update time of the current activity.");
-			System.out.println("9: Show health measure histories.");
-			System.out.println("10: Show goal histories.");
+			System.out.println("5: Get suggestion for activities and select activity for exercise.");
+			System.out.println("6: Search for activities and select activity for exercie.");
+			System.out.println("7: Update time of the current activity.");
+			System.out.println("8: Show health measure histories.");
+			System.out.println("9: Show goal histories.");
+			System.out.println("To quit this program, please type 'quit'");
 			input = br.readLine();
-			if (input.equals("exit")) {
+			if (input.equals("quit")) {
 				System.exit(0);
 			} else {
 				switch (input) {
@@ -65,13 +67,13 @@ public class PeopleClient {
 			        while ((inputLine = in.readLine()) != null)
 			        	System.out.println("Your quote:" + newLine + inputLine + newLine + "Keep up the good work!" );
 			        	in.close();
-			       System.out.println("***************************************************************************************************");
-			       break;
+			        System.out.println("***************************************************************************************************");
+			        break;
 				case "5":
 					suggestionActivities = people.suggestActivities(idPerson);
 					writeActivities(suggestionActivities);
 					System.out.print("Enter the activity ID(to exit enter q): "); input = br.readLine();
-					if (input.equals("q") || input.equals("Q")) {
+					if (input.equals("quit")) {
 						break;
 					} else {
 						int select = Integer.parseInt(input);
@@ -83,12 +85,11 @@ public class PeopleClient {
 					}
 					break;
 				case "6":
-				case "7":
 					System.out.print("Enter your activity type: "); input = br.readLine();
 					searchingListOfActivities = people.searchActivities(idPerson, input);
 					writeActivities(searchingListOfActivities);
 					System.out.print("Enter the activity ID(to exit enter q): "); input = br.readLine();
-					if (input.equals("q") || input.equals("Q")) {
+					if (input.equals("quit")) {
 						break;
 					} else {
 						int select = Integer.parseInt(input);
@@ -99,7 +100,7 @@ public class PeopleClient {
 						}
 					}
 					break;
-				case "8":
+				case "7":
 					System.out.print("Enter activity time(hour): "); input = br.readLine();
 					double time = Double.parseDouble(input);
 					for (Goal goal: person.getGoals().getGoals()) {
@@ -114,11 +115,11 @@ public class PeopleClient {
 						}
 					}
 					break;
-				case "9":
+				case "8":
 					List<HealthMeasureHistory> healthMeasureHistories = people.getMeasureHistories(idPerson);
 					writeHealthMeasureHistories(healthMeasureHistories);
 					break;
-				case "10":
+				case "9":
 					List<Goal> goals = people.getGoalHistories(idPerson);
 					writeGoals(goals);
 					break;
