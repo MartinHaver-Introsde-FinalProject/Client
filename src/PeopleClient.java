@@ -24,7 +24,7 @@ public class PeopleClient {
 		Person person = people.getPersonById(idPerson);
 
 		while (true) {
-			System.out.println("This is the console. To quit this program, please type 'q' or 'Q'.");	
+			System.out.println("This is the console. To quit this program, please type 'exit'.");	
 			System.out.println("\n\n");
 			System.out.println("MENU");
 			System.out.println("1: Show person information.");
@@ -37,7 +37,7 @@ public class PeopleClient {
 			System.out.println("9: Show health measure histories.");
 			System.out.println("10: Show goal histories.");
 			input = br.readLine();
-			if (input.equals("q") || input.equals("Q")) {
+			if (input.equals("exit")) {
 				System.exit(0);
 			} else {
 				switch (input) {
@@ -57,7 +57,7 @@ public class PeopleClient {
 					person = people.createNewGoal(idPerson);
 					break;
 				case "4":
-					URL oracle = new URL("https://safe-ravine-27770.herokuapp.com/api/motivation");
+					URL oracle = new URL("https://safe-ravine-27770.herokuapp.com/blogic/motivation");
 			        BufferedReader in = new BufferedReader(new InputStreamReader(oracle.openStream()));
 			        String inputLine;
 			        String newLine = System.getProperty("line.separator");

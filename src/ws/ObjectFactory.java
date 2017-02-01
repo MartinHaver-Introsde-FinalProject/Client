@@ -25,7 +25,6 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     private final static QName _Activity_QNAME = new QName("http://ws/", "activity");
-    private final static QName _Motivation_QNAME = new QName("http://ws/", "motivation");
     private final static QName _GetPersonByIdResponse_QNAME = new QName("http://ws/", "getPersonByIdResponse");
     private final static QName _UpdateTimeForActivitySelectionResponse_QNAME = new QName("http://ws/", "updateTimeForActivitySelectionResponse");
     private final static QName _ActivitySelection_QNAME = new QName("http://ws/", "activitySelection");
@@ -89,14 +88,6 @@ public class ObjectFactory {
      */
     public Activity createActivity() {
         return new Activity();
-    }
-
-    /**
-     * Create an instance of {@link Motivation }
-     * 
-     */
-    public Motivation createMotivation() {
-        return new Motivation();
     }
 
     /**
@@ -322,15 +313,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://ws/", name = "activity")
     public JAXBElement<Activity> createActivity(Activity value) {
         return new JAXBElement<Activity>(_Activity_QNAME, Activity.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Motivation }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://ws/", name = "motivation")
-    public JAXBElement<Motivation> createMotivation(Motivation value) {
-        return new JAXBElement<Motivation>(_Motivation_QNAME, Motivation.class, null, value);
     }
 
     /**
